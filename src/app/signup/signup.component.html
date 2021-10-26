@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Intro component with sign up form</title>
+</head>
+<body>
+    <div class="parent">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="heading h1">Learn to code by watching others.</p>
+                    <p class="desc">  See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
+                        but understanding how developers think is invaluable. </p>
+                    <p class="h6" style="color:rgb(18, 18, 201)">Already a Member?   <button class="btn btn-secondary"routerLink="/login"><a>Login</a></button></p>
+                </div>
+                <div class="col-md-6">
+                    <div class="free">
+                        <p><strong>Try it free 7 days</strong> then $20/mo. thereafter</p>
+                    </div>
+                <div class="changebg">
+                    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                          <input  
+                            type="text" 
+                            class="form-control input11" 
+                            id="Fname" 
+                            placeholder="First Name"
+                            formControlName="fname"
+                            name="fname"
+                            >
+                           
+    <div *ngIf="signupForm.controls['fname'].touched && !signupForm.controls['fname'].valid">  
+      <span *ngIf="signupForm.controls['fname'].hasError('required') ">  
+          First name is required  
+          </span>  
+          <span *ngIf="signupForm.controls['fname'].hasError('minlength') ">  
+           Min length is 1  
+          </span>  
+          <span *ngIf="signupForm.controls['fname'].hasError('maxlength') ">  
+          max length is 15  
+      </span>  
+  </div> 
+                        </div>
+                        <div class="form-group">  
+                            <input 
+                            type="text" 
+                            class="form-control input11" 
+                            id="Lname" 
+                            placeholder="Last Name"
+                            formControlName="lname"
+                            name="lname"
+                           >
+                           <div *ngIf="signupForm.controls['lname'].touched && !signupForm.controls['lname'].valid">
+                             <span *ngIf="signupForm.controls['lname'].hasError('required')">Last Name is Required</span>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                          <input 
+                          type="email" 
+                          class="form-control input11" 
+                          id="exampleInputEmail1" 
+                          aria-describedby="emailHelp" 
+                          placeholder="Enter email"
+                          formControlName="email"
+                          name="email"
+                        >
+                        <div *ngIf="signupForm.controls['email'].touched && !signupForm.controls['email'].valid">
+                          <span *ngIf="signupForm.controls['email'].hasError('required')">Email is Required</span>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <input 
+                          type="password" 
+                          class="form-control input11" 
+                          id="exampleInputPassword1" 
+                          placeholder="Password"
+                          formControlName="password"
+                          name="password">
+                          <div *ngIf="signupForm.controls['password'].touched && !signupForm.controls['password'].valid">
+                            <span *ngIf="signupForm.controls['password'].hasError('required')">Password is Required</span>
+                            <span *ngIf="signupForm.controls['password'].hasError('minlength')">Password should be atleast of 8 Length</span>
+                            
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <input 
+                            type="number" 
+                            class="form-control input11" 
+                            id="mobileNum" 
+                            placeholder="Mobile Number"
+                            formControlName="number"
+                            name="mobile">
+                            <div *ngIf="signupForm.controls['number'].touched && !signupForm.controls['number'].valid">
+                              <span *ngIf="signupForm.controls['number'].hasError('required')">Enter your 10 digits Phone Number</span>
+                              <span *ngIf="signupForm.controls['number'].hasError('min')">Number should be atleast of Length 10</span>
+                              <span *ngIf="signupForm.controls['number'].hasError('max')">Number should not exceed Length 10</span>
+                            </div>
+                        </div>
+                        <div class="to_flex2">
+                            <p class="h6" >Select Gender</p>
+                        <div class="form-group  form-check">
+                           <div class="radio" *ngFor="let gender of genders">
+                             <label>
+                               <input type="radio"
+                               name="gender"
+                               formControlName="gender"
+                               [value]="gender">
+                               {{gender}}
+                             </label>
+                             <div *ngIf="signupForm.controls['gender'].touched && !signupForm.controls['gender'].valid">
+                              <span *ngIf="signupForm.controls['gender'].hasError('required')">Please Select Gender</span>
+                            </div>
+
+                           </div>
+                          </div>
+                        </div>
+                          <div class="form-group">
+                          <select class="form-control" style="margin-bottom:10px;" formControlName="Country">
+                            <option>INDIA</option>
+                            <option>NEPAL</option>
+                            <option>CHINA</option>
+                            <option>USA</option>
+                          </select>
+                        </div>
+                        <div class="to_flex1">
+                          <p class="h6">Area of Interest</p>
+                        <div class="form-group form-check">
+                          <div class="checkbox"*ngFor="let interest of AreaOfInterest">
+                            <label>
+                              <input 
+                              type="checkbox" 
+                              name="interest"
+                              value=[interest]
+                              formControlName="interest" 
+                              id="">
+                              {{interest}}
+                            </label>
+                          </div>
+                        </div>
+                        </div>
+
+
+                        <button 
+                        type="submit" 
+                        class="btn btn-primary" 
+                        style="width:100%; margin-top:20px;"
+                        [disabled]="!signupForm.valid"
+                        (click)="onSubmit()"
+                        >
+                        Submit
+                      </button>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
