@@ -1,6 +1,9 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, NgForm, NgModel, Validators } from '@angular/forms';
+import { FormBuilder,FormControl, NgForm, NgModel, Validators,FormArray} from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { UserModuleComponent } from '../user-module/user-module.component';
+import { UsersListService } from '../users-list.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,8 +12,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   genders=['Male','Female'];
-  AreaOfInterest=['Science','Sports','Arts','Music','Films'];
   signupForm:FormGroup;
+  constructor(private httpService:UsersListService) { }
   ngOnInit(){
     this.signupForm=new FormGroup({
       'fname':new FormControl('',Validators.required),
@@ -19,7 +22,6 @@ export class SignupComponent implements OnInit {
       'password':new FormControl('',[Validators.required, Validators.minLength(8)]),
       'number':new FormControl('',[Validators.required,Validators.min(1000000000), Validators.max(999999999999)]),
       'Country':new FormControl('',Validators.required),
-      'interest':new FormControl([''],Validators.required),
       'gender':new FormControl('',Validators.required),  
     });
   };
@@ -31,7 +33,25 @@ export class SignupComponent implements OnInit {
       console.log(this.signupForm.value.number);
       console.log(this.signupForm.value.Country);
       console.log(this.signupForm.value.gender);
+      console.log(this.signupForm.value);
       this.signupForm.reset();
     }
-
+    CreateUser(){
+      let data={
+        "id": 2,
+        "email":this.signupForm.value.email,
+        "first_name":this.signupForm.value.fname,
+        "last_name":this.signupForm.value.lname,
+        "number":this.signupForm.value.number,
+        "job":"Software Developer",
+        "gender":this.signupForm.value.gender,
+        "country":this.signupForm.value.Country
+      }
+      this.httpService.CreateUser(data).subscribe((Response)=>{
+        console.log('CreateUser',Response);
+      },(error)=>{
+        console.log('Create User',error);
+      });
+    }
+    
 }

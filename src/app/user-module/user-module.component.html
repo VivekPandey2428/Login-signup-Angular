@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <table>
+      <tr>
+      <th>ID</th>
+      <th>EMAIL </th>
+      <th>FIRST NAME</th>
+      <th>LAST NAME</th>
+      <th>AVATAR</th>
+    </tr>
+    <tr *ngFor="let user of UserList">
+      <td>{{user.id}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td><img [src]="user.avatar"></td>
+    </tr>
+    </table>
+    <button (click)="CreateUser()">Post Data</button>
+    </div>
+  
+</body>
+</html>

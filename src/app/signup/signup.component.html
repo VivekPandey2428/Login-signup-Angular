@@ -120,37 +120,22 @@
                           </div>
                         </div>
                           <div class="form-group">
+                            <p class="h6">Select Country</p>
                           <select class="form-control" style="margin-bottom:10px;" formControlName="Country">
+                            
                             <option>INDIA</option>
                             <option>NEPAL</option>
                             <option>CHINA</option>
-                            <option>USA</option>
+                            <option >USA</option>
                           </select>
                         </div>
-                        <div class="to_flex1">
-                          <p class="h6">Area of Interest</p>
-                        <div class="form-group form-check">
-                          <div class="checkbox"*ngFor="let interest of AreaOfInterest">
-                            <label>
-                              <input 
-                              type="checkbox" 
-                              name="interest"
-                              value=[interest]
-                              formControlName="interest" 
-                              id="">
-                              {{interest}}
-                            </label>
-                          </div>
-                        </div>
-                        </div>
-
-
                         <button 
                         type="submit" 
                         class="btn btn-primary" 
                         style="width:100%; margin-top:20px;"
                         [disabled]="!signupForm.valid"
-                        (click)="onSubmit()"
+                        (click)="CreateUser()"
+                        routerLink="/user-module"
                         >
                         Submit
                       </button>
