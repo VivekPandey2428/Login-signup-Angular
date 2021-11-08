@@ -2,8 +2,9 @@ import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormControl, NgForm, NgModel, Validators,FormArray} from '@angular/forms';
 import { FormGroup } from '@angular/forms';
-import { UserModuleComponent } from '../user-module/user-module.component';
 import { UsersListService } from '../users-list.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,9 @@ import { UsersListService } from '../users-list.service';
 export class SignupComponent implements OnInit {
   genders=['Male','Female'];
   signupForm:FormGroup;
-  constructor(private httpService:UsersListService) { }
+  constructor(private httpService:UsersListService,private router:ActivatedRoute,private route:Router,private authService:AuthService) {
+
+   }
   ngOnInit(){
     this.signupForm=new FormGroup({
       'fname':new FormControl('',Validators.required),
@@ -25,17 +28,9 @@ export class SignupComponent implements OnInit {
       'gender':new FormControl('',Validators.required),  
     });
   };
-    onSubmit(){
-      console.log(this.signupForm.value.fname);
-      console.log(this.signupForm.value.lname);
-      console.log(this.signupForm.value.email);
-      console.log(this.signupForm.value.password);
-      console.log(this.signupForm.value.number);
-      console.log(this.signupForm.value.Country);
-      console.log(this.signupForm.value.gender);
-      console.log(this.signupForm.value);
-      this.signupForm.reset();
-    }
+   onSubmit(){
+     console.log(this.signupForm)
+  }
     CreateUser(){
       let data={
         "id": 2,

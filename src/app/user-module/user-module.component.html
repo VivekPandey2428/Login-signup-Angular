@@ -1,31 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div>
-    <table>
-      <tr>
-      <th>ID</th>
-      <th>EMAIL </th>
-      <th>FIRST NAME</th>
-      <th>LAST NAME</th>
-      <th>AVATAR</th>
-    </tr>
-    <tr *ngFor="let user of UserList">
-      <td>{{user.id}}</td>
-      <td>{{user.email}}</td>
-      <td>{{user.first_name}}</td>
-      <td>{{user.last_name}}</td>
-      <td><img [src]="user.avatar"></td>
-    </tr>
-    </table>
-    <button (click)="CreateUser()">Post Data</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+    <h1><a *ngIf = "!auth.isAuthenticated()" [routerLink]="['signup/signup']">User is not Authenticated </a> </h1>
+    <h1><a *ngIf = "auth.isAuthenticated()" [routerLink]="['user-module']">User {{auth.currentuser.firstname}} Is Authenticated</a></h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 w1">
+          <table>
+            <tr>
+            <th>ID</th>
+            <th>EMAIL </th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>AVATAR</th>
+          </tr>
+          <tr *ngFor="let user of UserList" [class.selected]>
+            <td>{{user.id}}</td>
+            <td>{{user.email}}</td>
+            <td (click)="NameDesc()">{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td><a [routerLink]="['/user-module',1]"><img [src]="user.avatar"></a></td>
+          </tr>
+          </table>
+          <button (click)="CreateUser()">Post Data</button>
+        </div>
+        <div class="col-md-6 w2" *ngIf="useractive">
+          <app-user-list-details></app-user-list-details>
+        </div>
+      </div>
     </div>
-  
-</body>
-</html>
+    </div>
+  </div>
+  </div>

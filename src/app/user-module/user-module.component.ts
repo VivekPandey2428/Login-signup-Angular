@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersListService } from '../users-list.service';
 import { SignupComponent } from '../signup/signup.component';
+import { ActivatedRoute,Router } from '@angular/router';
+import { ViewImageComponent } from '../view-image/view-image.component';
+import { AuthService } from '../signup/auth.service';
 
 @Component({
   selector: 'app-user-module',
@@ -10,8 +13,7 @@ import { SignupComponent } from '../signup/signup.component';
 export class UserModuleComponent implements OnInit {
   title='v1k'
   UserList:any;
-  constructor(private httpService:UsersListService) { }
-
+  constructor(private httpService:UsersListService, private router:ActivatedRoute,private route:Router,public auth:AuthService) { }
   ngOnInit(){
     this.getUserListData();
   }
@@ -23,6 +25,7 @@ export class UserModuleComponent implements OnInit {
       console.log('Userlist:',error);
     });
   }
+  
   CreateUser(){
     let data={
       "id":2,
@@ -36,6 +39,13 @@ export class UserModuleComponent implements OnInit {
     },(error)=>{
       console.log('Create User',error);
     });
+  }
+  useractive=false;
+  NameDesc(){
+    this.useractive=true;
+  }
+  generateRoute(){
+    this.route.navigate(['user-module',1])
   }
 
 }

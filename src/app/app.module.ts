@@ -9,11 +9,16 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserModuleComponent } from './user-module/user-module.component';
 import { HttpClientModule } from  '@angular/common/http';
+import { ViewImageComponent } from './view-image/view-image.component';
+import { AuthService } from './signup/auth.service';
+import { UserListDetailsComponent } from './user-list-details/user-list-details.component';
 const appRoutes:Routes=[
   {path:'',component:HomepageComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
-  {path:'user-module',component:UserModuleComponent}
+  {path:'user-module',component:UserModuleComponent},
+  {path:'user-module/:id',component:ViewImageComponent},
+  {path:'',redirectTo:'/',pathMatch:'full'}
 ];
 @NgModule({
   declarations: [
@@ -22,6 +27,8 @@ const appRoutes:Routes=[
     SignupComponent,
     HomepageComponent,
     UserModuleComponent,
+    ViewImageComponent,
+    UserListDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,9 +36,9 @@ const appRoutes:Routes=[
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
