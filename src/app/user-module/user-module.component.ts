@@ -41,13 +41,12 @@ export class UserModuleComponent implements OnInit {
       console.log('Create User',error);
     });
   }
-  @Input() fnameValue="";
-  @Input() lnameValue="";
+  @Input() userValue:string;
   useractive=false;
-  NameDesc(fnameValue,lnameValue){
+  selectedUser:any;
+  NameDesc(user){
     this.useractive=true;
-    this.fnameValue=fnameValue.value;
-    this.lnameValue=lnameValue.value;
+    this.selectedUser=user;
   }
   generateRoute(){
     this.route.navigate(['user-module',1])

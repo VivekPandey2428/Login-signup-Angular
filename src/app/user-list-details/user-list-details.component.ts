@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-user-list-details',
@@ -11,11 +11,17 @@ export class UserListDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  @Input() usersfirstnamevalue="";
-  @Input() userslastnamevalue="";
-  Displayed(val,val2){
-    val.value=this.usersfirstnamevalue;
-    val2.value=this.userslastnamevalue;
+  @Input() selectedUser;
+  
+
+  changelog:string[]=[];
+  public data:any={};
+  ngOnChanges(changes:SimpleChanges){
+    console.log(changes);
+    for(let name in changes){
+      let change=changes[name];
+      this.data[name]=change.currentValue;
+    }
   }
 
 }

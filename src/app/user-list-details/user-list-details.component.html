@@ -1,9 +1,9 @@
-<form>
-    <label for="">First Name</label>
-    <input type="text" #val>
-    <label for="">Last Name</label>
-    <input type="text" #val2>
-    <label for="">Email</label>
-    <input type="email">
-   <button (click)="Displayed(val,val2)">Submit</button>
-</form>
+<div>
+    <label for="">FIRSTNAME</label>
+    <input type="text"[value]="data?.selectedUser?.first_name">
+    <label for="LASTNAME">LASTNAME</label>
+    <input type="text" [value]="data?.selectedUser?.last_name">
+    <label for=""> Email</label>
+    <input type="text" [value]="data?.selectedUser?.email">
+    <button>Submit</button>
+</div>
