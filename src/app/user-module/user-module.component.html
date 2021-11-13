@@ -17,15 +17,15 @@
           <tr *ngFor="let user of UserList" [class.selected]>
             <td>{{user.id}}</td>
             <td>{{user.email}}</td>
-            <td (click)="NameDesc()">{{user.first_name}}</td>
-            <td>{{user.last_name}}</td>
+            <td (click)="NameDesc(fnameValue,lnameValue)" #fnameValue>{{user.first_name}}</td>
+            <td #lnameValue>{{user.last_name}}</td>
             <td><a [routerLink]="['/user-module',1]"><img [src]="user.avatar"></a></td>
           </tr>
           </table>
           <button (click)="CreateUser()">Post Data</button>
         </div>
         <div class="col-md-6 w2" *ngIf="useractive">
-          <app-user-list-details></app-user-list-details>
+          <app-user-list-details [usersfirstnamevalue]="fnameValue"[userslastnamevalue]="lnameValue" ></app-user-list-details>
         </div>
       </div>
     </div>

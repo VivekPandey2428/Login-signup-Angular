@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user-list-details',
@@ -10,6 +10,12 @@ export class UserListDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+  @Input() usersfirstnamevalue="";
+  @Input() userslastnamevalue="";
+  Displayed(val,val2){
+    val.value=this.usersfirstnamevalue;
+    val2.value=this.userslastnamevalue;
   }
 
 }

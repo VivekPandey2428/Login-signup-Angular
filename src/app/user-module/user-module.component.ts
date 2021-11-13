@@ -4,6 +4,7 @@ import { SignupComponent } from '../signup/signup.component';
 import { ActivatedRoute,Router } from '@angular/router';
 import { ViewImageComponent } from '../view-image/view-image.component';
 import { AuthService } from '../signup/auth.service';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-user-module',
@@ -40,9 +41,13 @@ export class UserModuleComponent implements OnInit {
       console.log('Create User',error);
     });
   }
+  @Input() fnameValue="";
+  @Input() lnameValue="";
   useractive=false;
-  NameDesc(){
+  NameDesc(fnameValue,lnameValue){
     this.useractive=true;
+    this.fnameValue=fnameValue.value;
+    this.lnameValue=lnameValue.value;
   }
   generateRoute(){
     this.route.navigate(['user-module',1])
