@@ -12,7 +12,6 @@ export class UserListDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   @Input() selectedUser;
-  
 
   changelog:string[]=[];
   public data:any={};
@@ -22,6 +21,11 @@ export class UserListDetailsComponent implements OnInit {
       let change=changes[name];
       this.data[name]=change.currentValue;
     }
+  }
+  update(fname,lname,email){
+    this.selectedUser.first_name=fname.value;
+    this.selectedUser.last_name=lname.value;
+    this.selectedUser.email=email.value;
   }
 
 }

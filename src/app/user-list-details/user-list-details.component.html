@@ -1,9 +1,9 @@
 <div>
     <label for="">FIRSTNAME</label>
-    <input type="text"[value]="data?.selectedUser?.first_name">
-    <label for="LASTNAME">LASTNAME</label>
-    <input type="text" [value]="data?.selectedUser?.last_name">
-    <label for=""> Email</label>
-    <input type="text" [value]="data?.selectedUser?.email">
-    <button>Submit</button>
+    <input type="text"[value]="data?.selectedUser?.first_name" #fname>
+    <label for="LASTNAME" >LASTNAME</label>
+    <input type="text" [value]="data?.selectedUser?.last_name" #lname>
+    <label for="" > Email</label>
+    <input type="text" [value]="data?.selectedUser?.email" #email>
+    <button (click)="update(fname,lname,email)">Submit</button>
 </div>
