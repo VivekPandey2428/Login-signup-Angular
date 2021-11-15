@@ -1,11 +1,11 @@
 <div>
     <form #userForm="ngForm" (ngSubmit)="update(userForm.value)">
     <label for="">FIRSTNAME</label>
-    <input type="text"class="form-control"  name="fname" [ngModel]="data?.selectedUser?.first_name" >
+    <input type="text"class="form-control"  name="fname" [(ngModel)]="data.selectedUser.first_name" >
     <label for="LASTNAME" >LASTNAME</label>
-    <input type="text" class="form-control" name="lname" [ngModel]="data?.selectedUser?.last_name">
+    <input type="text" class="form-control" name="lname" [(ngModel)]="data.selectedUser.last_name">
     <label for="" > Email</label>
-    <input type="text" class="form-control"[value]="data?.selectedUser?.email"name="email" [ngModel]="data?.selectedUser?.email">
+    <input type="text" class="form-control"[value]="data?.selectedUser?.email"name="email" [(ngModel)]="data.selectedUser.email">
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

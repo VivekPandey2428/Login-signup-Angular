@@ -46,8 +46,8 @@ export class UserModuleComponent implements OnInit {
   selectedUser:any;
   editusers=[];
   update(newdetails){
-    this.selectedUser.first_name=newdetails.fname;
-    this.selectedUser.last_name=newdetails.lname;
+    this.selectedUser.first_name=newdetails.first_name;
+    this.selectedUser.last_name=newdetails.last_name;
     this.selectedUser.email=newdetails.email;
     
   }

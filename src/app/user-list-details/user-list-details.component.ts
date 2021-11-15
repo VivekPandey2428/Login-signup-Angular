@@ -25,6 +25,6 @@ export class UserListDetailsComponent implements OnInit {
     }
   }
   update(value:any){
-    this.newItemEvent.emit(value); 
+    this.newItemEvent.emit(this.data?.selectedUser); 
   }
 }
