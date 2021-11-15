@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-list-details',
@@ -8,10 +9,11 @@ import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/
 export class UserListDetailsComponent implements OnInit {
 
   constructor() { }
-
+  
   ngOnInit(): void {
   }
   @Input() selectedUser;
+  @Output() newItemEvent = new EventEmitter<string>();
 
   changelog:string[]=[];
   public data:any={};
@@ -23,9 +25,9 @@ export class UserListDetailsComponent implements OnInit {
     }
   }
   update(fname,lname,email){
-    this.selectedUser.first_name=fname.value;
-    this.selectedUser.last_name=lname.value;
-    this.selectedUser.email=email.value;
+    this.newItemEvent.emit(fname.value);
+    this.newItemEvent.emit(lname.value);
+    this.newItemEvent.emit(email.value);
   }
 
 }

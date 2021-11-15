@@ -44,6 +44,12 @@ export class UserModuleComponent implements OnInit {
   @Input() userValue:string;
   useractive=false;
   selectedUser:any;
+  editusers=[];
+  items=[];
+  update(newdetails){
+    this.items.push(newdetails);
+    console.log(this.items);
+  }
   NameDesc(user){
     this.useractive=true;
     this.selectedUser=user;
@@ -51,5 +57,4 @@ export class UserModuleComponent implements OnInit {
   generateRoute(){
     this.route.navigate(['user-module',1])
   }
-
 }

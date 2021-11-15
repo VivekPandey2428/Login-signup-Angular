@@ -25,7 +25,7 @@
           <button (click)="CreateUser()">Post Data</button>
         </div>
         <div class="col-md-6 w2" *ngIf="useractive">
-          <app-user-list-details [selectedUser]="selectedUser" ></app-user-list-details>
+          <app-user-list-details [selectedUser]="selectedUser" (newItemEvent)="update($event)" ></app-user-list-details>
         </div>
       </div>
     </div>
