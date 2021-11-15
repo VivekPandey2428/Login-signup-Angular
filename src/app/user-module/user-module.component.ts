@@ -46,10 +46,8 @@ export class UserModuleComponent implements OnInit {
   selectedUser:any;
   editusers=[];
   update(newdetails){
-    this.editusers.push(newdetails);
-    this.selectedUser.first_name=this.editusers[0];
-    this.selectedUser.last_name=this.editusers[1];
-    this.selectedUser.email=this.editusers[2];
+    console.log(newdetails);
+    
   }
   NameDesc(user){
     this.useractive=true;
