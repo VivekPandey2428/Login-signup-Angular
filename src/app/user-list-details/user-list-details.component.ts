@@ -25,12 +25,6 @@ export class UserListDetailsComponent implements OnInit {
     }
   }
   update(value:any){
-    let userfname = value.fname;
-    this.newItemEvent.emit(userfname);
-    let userlname=value.lname;
-    this.newItemEvent.emit(userlname);
-    let useremail=value.email;
-    this.newItemEvent.emit(useremail);
+    this.newItemEvent.emit(value); 
   }
-
 }
