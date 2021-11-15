@@ -1,6 +1,6 @@
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
     <h1><a *ngIf = "!auth.isAuthenticated()" [routerLink]="['signup/signup']">User is not Authenticated </a> </h1>
     <h1><a *ngIf = "auth.isAuthenticated()" [routerLink]="['user-module']">User {{auth.currentuser.firstname}} Is Authenticated</a></h1>
     <div class="container">

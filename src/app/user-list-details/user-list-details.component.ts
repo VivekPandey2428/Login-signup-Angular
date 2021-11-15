@@ -24,10 +24,13 @@ export class UserListDetailsComponent implements OnInit {
       this.data[name]=change.currentValue;
     }
   }
-  update(fname,lname,email){
-    this.newItemEvent.emit(fname.value);
-    this.newItemEvent.emit(lname.value);
-    this.newItemEvent.emit(email.value);
+  update(value:any){
+    let userfname = value.fname;
+    this.newItemEvent.emit(userfname);
+    let userlname=value.lname;
+    this.newItemEvent.emit(userlname);
+    let useremail=value.email;
+    this.newItemEvent.emit(useremail);
   }
 
 }

@@ -45,10 +45,11 @@ export class UserModuleComponent implements OnInit {
   useractive=false;
   selectedUser:any;
   editusers=[];
-  items=[];
   update(newdetails){
-    this.items.push(newdetails);
-    console.log(this.items);
+    this.editusers.push(newdetails);
+    this.selectedUser.first_name=this.editusers[0];
+    this.selectedUser.last_name=this.editusers[1];
+    this.selectedUser.email=this.editusers[2];
   }
   NameDesc(user){
     this.useractive=true;
