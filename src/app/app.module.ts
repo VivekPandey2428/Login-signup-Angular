@@ -12,13 +12,16 @@ import { HttpClientModule } from  '@angular/common/http';
 import { ViewImageComponent } from './view-image/view-image.component';
 import { AuthService } from './signup/auth.service';
 import { UserListDetailsComponent } from './user-list-details/user-list-details.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AuthGuard } from './auth.guard';
+
 const appRoutes:Routes=[
-  {path:'',component:HomepageComponent},
-  {path:'login',component:LoginComponent},
-  {path:'signup',component:SignupComponent},
-  {path:'user-module',component:UserModuleComponent},
+  {path:'home',component:HomepageComponent,data:{animation:'home'}},
+  {path:'login',component:LoginComponent,data:{animation:'login'}},
+  {path:'signup',component:SignupComponent,data:{animation:'signup'}},
+  {path:'user-module',component:UserModuleComponent,canActivate:[AuthGuard]},
   {path:'user-module/:id',component:ViewImageComponent},
-  {path:'',redirectTo:'/',pathMatch:'full'}
+  {path:'',redirectTo:'/home',pathMatch:'full'}
 ];
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ const appRoutes:Routes=[
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
