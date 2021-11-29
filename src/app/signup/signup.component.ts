@@ -28,10 +28,8 @@ export class SignupComponent implements OnInit {
       'gender':new FormControl('',Validators.required),  
     });
   };
-   onSubmit(){
-     console.log(this.signupForm)
-  }
-    CreateUser(){
+    onSubmit(){
+      if(this.signupForm.valid){
       let data={
         "id": 2,
         "email":this.signupForm.value.email,
@@ -43,10 +41,12 @@ export class SignupComponent implements OnInit {
         "country":this.signupForm.value.Country
       }
       this.httpService.CreateUser(data).subscribe((Response)=>{
+        this.route.navigate(['login']);
         console.log('CreateUser',Response);
       },(error)=>{
         console.log('Create User',error);
       });
     }
+  }
     
 }
