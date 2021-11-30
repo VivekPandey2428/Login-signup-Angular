@@ -1,8 +1,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-    <h1><a *ngIf = "!auth.isAuthenticated()" [routerLink]="['signup/signup']">User is not Authenticated </a> </h1>
-    <h1><a *ngIf = "auth.isAuthenticated()" [routerLink]="['user-module']">User {{auth.currentuser.firstname}} Is Authenticated</a></h1>
+        <div class="card">
+          <div class="form-group">
+            <label for="Search-text">Search Text</label>
+            <input type="text" class="form-control" [(ngModel)]="searchText" autofocus>
+          </div>
+        </div>
+
     <div class="container">
       <div class="row">
         <div class="col-md-6 w1">
@@ -14,12 +19,12 @@
             <th>LAST NAME</th>
             <th>AVATAR</th>
           </tr>
-          <tr *ngFor="let user of UserList" [class.selected]>
+          <tr *ngFor="let user of UserList | filter:searchText" [class.selected]>
             <td>{{user.id}}</td>
             <td>{{user.email}}</td>
             <td (click)="NameDesc(user)">{{user.first_name}}</td>
             <td>{{user.last_name}}</td>
-            <td><a [routerLink]="['/user-module',1]"><img [src]="user.avatar"></a></td>
+            <td><a><img [src]="user.avatar"></a></td>
           </tr>
           </table>
           <button (click)="CreateUser()">Post Data</button>

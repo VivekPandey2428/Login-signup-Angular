@@ -6,6 +6,7 @@ import { ViewImageComponent } from '../view-image/view-image.component';
 import { AuthService } from '../signup/auth.service';
 import { Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-user-module',
   templateUrl: './user-module.component.html',
@@ -13,7 +14,8 @@ import { Input } from '@angular/core';
 })
 export class UserModuleComponent implements OnInit {
   title='v1k'
-  UserList:any;
+  UserList:any=[];
+  searchText:string='';
   constructor(private httpService:UsersListService, private router:ActivatedRoute,private route:Router,public auth:AuthService) { }
   ngOnInit(){
     this.getUserListData();

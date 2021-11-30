@@ -14,6 +14,8 @@ import { AuthService } from './signup/auth.service';
 import { UserListDetailsComponent } from './user-list-details/user-list-details.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AuthGuard } from './auth.guard';
+import { FilterPipe } from './user-module/filter.pipe';
+
 
 const appRoutes:Routes=[
   {path:'home',component:HomepageComponent,data:{animation:'home'}},
@@ -21,7 +23,7 @@ const appRoutes:Routes=[
   {path:'signup',component:SignupComponent,data:{animation:'signup'}},
   {path:'user-module',component:UserModuleComponent,canActivate:[AuthGuard]},
   {path:'user-module/:id',component:ViewImageComponent},
-  {path:'',redirectTo:'/home',pathMatch:'full'}
+  {path:'',redirectTo:'/home',pathMatch:'full'} 
 ];
 @NgModule({
   declarations: [
@@ -32,12 +34,13 @@ const appRoutes:Routes=[
     UserModuleComponent,
     ViewImageComponent,
     UserListDetailsComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forChild(appRoutes),
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
