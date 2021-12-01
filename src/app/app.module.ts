@@ -22,8 +22,9 @@ const appRoutes:Routes=[
   {path:'login',component:LoginComponent,data:{animation:'login'}},
   {path:'signup',component:SignupComponent,data:{animation:'signup'}},
   {path:'user-module',component:UserModuleComponent,canActivate:[AuthGuard]},
-  {path:'user-module/:id',component:ViewImageComponent},
-  {path:'',redirectTo:'/home',pathMatch:'full'} 
+  {path:'view-image',component:ViewImageComponent},
+  {path:'',redirectTo:'/home',pathMatch:'full'}, 
+  {path:'lazy',loadChildren:() => import('./lazy/lazy.module').then(m=>m.LazyModule)}
 ];
 @NgModule({
   declarations: [
