@@ -13,29 +13,27 @@ import { UsersListService } from '../users-list.service';
 })
 export class LoginComponent implements OnInit {
   email:any='';
-  pwd:any='';
+  password:any='';
   loginForm:FormGroup;
-  loginData:any = {
-     "email":"eve.holt@reqres.in",
-     "password":"pistol"
-  };
   constructor(public authService:AuthService,private router:Router,private authguard:AuthGuard,private http:HttpClientModule,private users:UsersListService) { }
 
   ngOnInit(){
     this.loginForm=new FormGroup({
       'email':new FormControl('',[Validators.required,Validators.email]),
-      'pwd':new FormControl('',[Validators.required, Validators.minLength(8)]),  
+      'password':new FormControl('',[Validators.required, Validators.minLength(4)]),  
     });
   }
   login(){
-    console.log(this.loginData);
-    this.users.LoginUserData(this.loginData).subscribe(res  => {
+    if(this.loginForm.valid){
+    console.log(this.loginForm.value);
+    this.users.LoginUserData(this.loginForm.value).subscribe(res  => {
     console.log(res)
-    localStorage.setItem('token',"QpwL5tke4Pnpja7X4")
+    localStorage.setItem('token',res.token);
     this.router.navigate(['user-module'])
    },
     error => console.log(error)
     )
+  }
     
   }
   }
