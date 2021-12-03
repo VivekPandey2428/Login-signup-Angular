@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/
 import { Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageserviceService } from '../messageservice.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-list-details',
@@ -10,7 +11,7 @@ import { MessageserviceService } from '../messageservice.service';
 })
 export class UserListDetailsComponent implements OnInit {
 
-  constructor(private messageService:MessageserviceService, private router:Router) { }
+  constructor(private toastr:ToastrService,private messageService:MessageserviceService, private router:Router) { }
   ngOnInit(): void {
   }
   @Input() selectedUser;
@@ -25,6 +26,7 @@ export class UserListDetailsComponent implements OnInit {
     }
   }
   update(value:any){
+    this.toastr.success('User Value Updated');
     this.newItemEvent.emit(this.data?.selectedUser);
   }
   sendMessage():void{

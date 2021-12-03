@@ -8,13 +8,17 @@ import { SignupComponent } from './signup/signup.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserModuleComponent } from './user-module/user-module.component';
-import { HttpClientModule } from  '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import { ViewImageComponent } from './view-image/view-image.component';
 import { AuthService } from './signup/auth.service';
 import { UserListDetailsComponent } from './user-list-details/user-list-details.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AuthGuard } from './auth.guard';
 import { FilterPipe } from './user-module/filter.pipe';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpInterceptor } from '@angular/common/http';
+import { HighlightDirective } from './highlight.directive';
+import { AuthInterceptorService } from './login/auth.interceptor.service';
 
 
 const appRoutes:Routes=[
@@ -36,6 +40,7 @@ const appRoutes:Routes=[
     ViewImageComponent,
     UserListDetailsComponent,
     FilterPipe,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
@@ -45,8 +50,16 @@ const appRoutes:Routes=[
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut:2000,
+      progressBar:true,
+      progressAnimation:'increasing',
+    }),
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

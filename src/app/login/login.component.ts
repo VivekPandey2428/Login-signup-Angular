@@ -6,6 +6,7 @@ import { AuthService } from '../authorize.service';
 import { AuthGuard } from '../auth.guard';
 import { HttpClientModule } from  '@angular/common/http';
 import { UsersListService } from '../users-list.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   email:any='';
   password:any='';
   loginForm:FormGroup;
-  constructor(public authService:AuthService,private router:Router,private authguard:AuthGuard,private http:HttpClientModule,private users:UsersListService) { }
+  constructor(private toastr:ToastrService,public authService:AuthService,private router:Router,private authguard:AuthGuard,private http:HttpClientModule,private users:UsersListService) { }
 
   ngOnInit(){
     this.loginForm=new FormGroup({
@@ -27,9 +28,10 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
     console.log(this.loginForm.value);
     this.users.LoginUserData(this.loginForm.value).subscribe(res  => {
-    console.log(res)
+    console.log(res);
     localStorage.setItem('token',res.token);
-    this.router.navigate(['user-module'])
+    this.toastr.success("Login Successful Redirected to Users");
+    this.router.navigate(['user-module']);
    },
     error => console.log(error)
     )
